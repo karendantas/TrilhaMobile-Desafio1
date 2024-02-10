@@ -1,5 +1,8 @@
 import { Feather } from "@expo/vector-icons"
-import {View, Text, Image, TouchableOpacity} from "react-native"
+import {View, Text, Image, TouchableOpacity, FlatList} from "react-native"
+import { CategoryButtons } from "./category-button"
+import { SECTIONS } from "@/utils/data/products"
+import { useState } from "react"
 
 
 interface HeaderProps{
@@ -8,6 +11,13 @@ interface HeaderProps{
 }
 
 export default function Header ({title, quantityCart}: HeaderProps){
+    const [category, setCategory] = useState('')
+
+    function handleCategory(categoryItem:string){
+        setCategory(categoryItem)
+    }
+
+
     return (
 
         <View className="flex-1 ">
@@ -29,6 +39,19 @@ export default function Header ({title, quantityCart}: HeaderProps){
             <Image source= {require("@/assets/header_image.jpg")} className=" h-40 w-full"/>
 
             <Text className="text-xl font-light pt-2">{title}</Text>
+
+
+            {/* Category Buttons */}
+            <FlatList 
+                data={SECTIONS}
+                keyExtractor={(item)=>item}
+                renderItem={({item})=><CategoryButtons title={item} isSelected={item === category} onPress={ ()=>handleCategory(item)}/>}
+                horizontal
+                contentContainerStyle={{gap:12, paddingHorizontal:20}}
+                className="max-h-10 mt-5"
+            />
+
+       
         </View>
     )
 }
