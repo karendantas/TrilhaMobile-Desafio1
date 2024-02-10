@@ -21,10 +21,8 @@ export const useCartStore = create<StateProps> ( ( set) => ({
             products: cartInMemory.add(state.products, product)
         })),
     
-    remove: (productId, string) =>
-        set((state)) => ({
-            product:
-        })
-
-
+    remove: (productId:string) =>
+        set((state) => ({
+            products: cartInMemory.remove(state.products, productId),
+        }))
 }))

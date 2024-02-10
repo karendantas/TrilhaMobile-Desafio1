@@ -15,7 +15,18 @@ export default function Cart(){
 
 
     function handleProductRemove(product:ProductCartProps){
-        Alert.alert("Remover", `Deseja mesmo remover ${product.title} do carrinho?`)
+        Alert.alert("Remover", `Deseja mesmo remover ${product.title} do carrinho?`,
+        [
+            {
+                text: "Cancelar",
+            },
+            {
+                text:"Remover",
+                onPress: () => cartStore.remove(product.id)
+            }
+        ]
+        
+        )
         
     }
     return(

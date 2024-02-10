@@ -18,4 +18,14 @@ export function add ( products: ProductCartProps[], newProduct: ProductProps){
     return [...products, {...newProduct, quantity: 1}]
 }
 
-export function remove (products: ProductCartProps[], productRemoveId: string)
+export function remove (products: ProductCartProps[], productRemoveId: string){
+    const updatedProducts = products.map((product) =>
+        product.id === productRemoveId ?{
+            ...product, 
+            quantity: product.quantity > 1 ? product.quantity -1:0 
+        } : product
+    )
+    
+    //Retornando so os produtos que tem a quantidade acima de 0
+    return updatedProducts.filter((product) => product.quantity>0)
+}
