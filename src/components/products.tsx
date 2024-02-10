@@ -4,7 +4,8 @@ import { forwardRef } from "react"
 type ProductDataProps = {
     title: string,
     description: string,
-    thumbnail: ImageProps
+    thumbnail: ImageProps,
+    quantity?: number
 }
 
 type ProductsProps = TouchableOpacityProps & {
@@ -27,6 +28,8 @@ export const Products = forwardRef<TouchableOpacity, ProductsProps> (
                 <Text className="text-base font-bold"> {data.title} </Text>
                 <Text className="leading-5 mt-0.5 text-xs">{data.description}</Text>
             </View>
+
+            { data.quantity  && <Text className="text-black">x{data.quantity}</Text>}
         </TouchableOpacity>
     )   
 })

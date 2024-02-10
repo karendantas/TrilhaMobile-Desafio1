@@ -1,6 +1,6 @@
 import { Feather } from "@expo/vector-icons"
 import {View, Text, Image, TouchableOpacity} from "react-native"
-
+import {Link} from "expo-router"
 
 
 interface HeaderProps{
@@ -18,6 +18,7 @@ export default function Header ({ quantityCart}: HeaderProps){
             <View className="flex-row justify-between items-center mx-5 pb-5">
                 <Text className="text-lime-500 text-2xl font-bold"> Dorgival Mercadin </Text>
 
+            <Link href="/cart" asChild>
                 <TouchableOpacity className="relative">
 
                     {quantityCart >0 && ( 
@@ -27,7 +28,7 @@ export default function Header ({ quantityCart}: HeaderProps){
                     }
                     <Feather name="shopping-cart" size={20}></Feather>
                 </TouchableOpacity>
-
+            </Link>
             </View>
 
             <Image source= {require("@/assets/header_image.jpg")} className=" h-40 w-full"/>

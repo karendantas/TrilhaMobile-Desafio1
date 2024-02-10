@@ -8,11 +8,15 @@ import { CategoryButtons } from "@/components/category-button"
 
 import { ProductProps, SECTIONS, STORE } from "@/utils/data/products"
 import {Products} from "@/components/products"
+import { useCartStore } from "@/stores/store-cart"
 
 
 
 export default function Home(){
     const [category, setCategory] = useState(SECTIONS[0])
+    const cartStore = useCartStore()
+
+    const quantityCartItems = cartStore.products.reduce((total, product) => total + product.quantity, 0)
 
     const sectionListRef = useRef<SectionList<ProductProps>>(null)
 
@@ -32,9 +36,11 @@ export default function Home(){
         }
     }
 
+
+
     return (
         <View className = "flex-1 pt-10"> 
-           <Header quantityCart={2}/>
+           <Header quantityCart={quantityCartItems}/>
            
            {/* Buttons de categorias */}
            <FlatList 
