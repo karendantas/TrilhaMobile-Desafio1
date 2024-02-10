@@ -1,5 +1,5 @@
 import { PRODUCTS } from "@/utils/data/products"
-import {useLocalSearchParams, useNavigation} from "expo-router"
+import {useLocalSearchParams, useNavigation, Redirect} from "expo-router"
 
 import {View, Text, Image} from "react-native"
 
@@ -19,11 +19,17 @@ export default function ProductsDetails(){
     
     //capturando o id passando no renderItem da sectionList
     const {id} = useLocalSearchParams()
-    const product = PRODUCTS.filter((item) => item.id === id)[0]
+    const product = PRODUCTS.find((item) => item.id === id)
 
     function handleAddToCart(){
-        cartStore.add(product)
-        navigation.goBack()
+        if (product){
+            cartStore.add(product)
+            navigation.goBack()
+        }
+    }
+
+    if (!product){
+        return <Redirect href="/"/>
     }
 
     return (
