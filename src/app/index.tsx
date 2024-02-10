@@ -1,4 +1,5 @@
 import {View, Text, Image, FlatList, SectionList} from "react-native"
+import {Link} from "expo-router"
 import { useRef, useState } from "react"
 
 import Header from "../components/header"
@@ -51,7 +52,10 @@ export default function Home(){
                 sections={STORE}
                 keyExtractor={(items)=>items.id}
                 renderItem={({item}) =>(
-                    <Products data={item}/>
+                    //Cada produto da lista esta evenlopado com um link para o arquivo [id].tsx
+                    <Link href={`/product/${item.id}`} asChild>
+                        <Products data={item}/>
+                    </Link>
                 )}    
                 renderSectionHeader={({section:{title}}) =>(
                     <Text className="text-2xl font-bold pb-3 ml-3">{title}</Text>

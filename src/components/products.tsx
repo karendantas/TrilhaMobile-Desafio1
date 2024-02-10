@@ -17,7 +17,10 @@ export const Products = forwardRef<TouchableOpacity, ProductsProps> (
     ({data, ...rest}, ref) => {
     return (
 
-        <TouchableOpacity className="flex-row items-center pb-4 ml-3"{...rest}>
+        <TouchableOpacity
+            ref={ref} 
+            className="flex-row items-center pb-4 ml-3"
+            {...rest}>
             <Image className="rounded-md h-20 w-20" source={data.thumbnail}></Image>
 
             <View className="flex-1 ml-3 justify-center">
