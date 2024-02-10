@@ -6,7 +6,7 @@ import Header from "../components/header"
 import { CategoryButtons } from "@/components/category-button"
 
 
-import { SECTIONS, STORE } from "@/utils/data/products"
+import { ProductProps, SECTIONS, STORE } from "@/utils/data/products"
 import {Products} from "@/components/products"
 
 
@@ -14,7 +14,7 @@ import {Products} from "@/components/products"
 export default function Home(){
     const [category, setCategory] = useState(SECTIONS[0])
 
-    const sectionListRef = useRef<SectionList>(null)
+    const sectionListRef = useRef<SectionList<ProductProps>>(null)
 
     function handleCategorySelected(categoryItem:string){
         setCategory(categoryItem)
